@@ -1,0 +1,19 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+      <mat-sidenav-container class="example-sidenav-container"
+                           [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
+      <mat-sidenav  [mode]="mobileQuery.matches ? 'over' : 'side'"
+      class="sidenav"
+      #snav 
+                   [fixedInViewport]="mobileQuery.matches" fixedTopGap="0"
+                   [opened]="true">
+        <app-sidenav></app-sidenav>
+      </mat-sidenav>
+     <mat-sidenav-content class="bg-dark">
+      <app-sidenav-content (SideNavEvent)="onMostrarSideNav($event)"
+      [mobileQueryMatch]="mobileQuery.matches"></app-sidenav-content>
+    </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+  
+  
+  
