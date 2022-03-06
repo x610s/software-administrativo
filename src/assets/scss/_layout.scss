@@ -1,0 +1,36 @@
+@import './variables';
+.layout-styles{
+    background-color:  $principal_gray !important;
+    padding: 10px;
+    height: 100%;
+}
+
+.principal-wrapper{
+    border: 0;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    padding: 1rem;
+    border-radius: 6px;
+    color: #333;
+    background: #fff;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 20%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+    box-shadow: 0 1px 4px 0 rgb(0 0 0 / 14%);
+}
+
+.wrapper-header{
+    width: 97%;
+    background: linear-gradient(60deg,#ef5350,#e53935);
+    border-radius: 3.4px;
+    margin: 0px auto;
+    position: relative;
+    margin-bottom: -20px;
+    top: -30px;
+    padding: 1px 0 !important;
+    height: 40px;
+    h2{
+        font-weight: 300 !important;
+        margin: 4px;
+        color: white;
+        font-weight: 300px !important;
+    }
+}

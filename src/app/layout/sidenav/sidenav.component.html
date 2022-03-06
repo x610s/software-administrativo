@@ -1,11 +1,9 @@
-<div class="text-center">
+<div class="text-center ">
     <h2 class="mx-auto">Titulo</h2>
-    <div class="">
-        <app-menu-buttons></app-menu-buttons>
-        <app-menu-buttons></app-menu-buttons>
-        <app-menu-buttons></app-menu-buttons>
-        <app-menu-buttons></app-menu-buttons>
-        <app-menu-buttons></app-menu-buttons>
-        <app-menu-buttons></app-menu-buttons>
+    <div *ngFor="let item of rutas">
+     <app-menu-buttons
+        [url]="item.url"
+        [texto]="item.ruta"
+        ></app-menu-buttons>
     </div>
 </div>

@@ -2,13 +2,15 @@
       <mat-sidenav-container class="example-sidenav-container"
                            [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
       <mat-sidenav  [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [class.mat-elevation-z8]
       class="sidenav"
       #snav 
-                   [fixedInViewport]="mobileQuery.matches" fixedTopGap="0"
-                   [opened]="true">
+      [fixedInViewport]="mobileQuery.matches" fixedTopGap="0"
+      [opened]="true"
+      >
         <app-sidenav></app-sidenav>
       </mat-sidenav>
-     <mat-sidenav-content class="bg-dark">
+     <mat-sidenav-content c>
       <app-sidenav-content (SideNavEvent)="onMostrarSideNav($event)"
       [mobileQueryMatch]="mobileQuery.matches"></app-sidenav-content>
     </mat-sidenav-content>

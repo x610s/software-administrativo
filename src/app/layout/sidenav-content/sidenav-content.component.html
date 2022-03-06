@@ -1,1 +1,5 @@
-<app-toolbar (SideNavEvent)="onMostrarSideNav($event)" *ngIf="mobileQueryMatch"></app-toolbar>
+
+<div class="layout-styles p-3">
+    <app-toolbar (SideNavEvent)="onMostrarSideNav($event)" *ngIf="mobileQueryMatch"></app-toolbar>
+    <router-outlet></router-outlet>
+</div>
