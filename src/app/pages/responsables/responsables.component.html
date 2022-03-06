@@ -1,37 +1,35 @@
 <div class="row d-flex justify-content-evenly page-wrapper ">
-    <div class="row principal-wrapper col-5 ">
-        <div class="wrapper-header">
-            <h2>Listado de Responsables</h2>
-        </div>
-        <div *ngIf="RespuestaPaginacionAPI.contenidoPagina">
-        <app-table 
-        [Data]="RespuestaPaginacionAPI.contenidoPagina" 
-        [displayedColumns]="Columnas"
-        [totalPaginas]="RespuestaPaginacionAPI.totalPaginas"
-        [TotalRegistros]="RespuestaPaginacionAPI.totalRegistros"
-        (EmitirCambioPagina)="OnCambiodePagina($event)"
-        ></app-table>
+    <div class="row col-5 ">
+        <div class=" principal-wrapper pw-mh-450 pw-minh-450">
+            <app-wrapper-header [texto]="'Listado de Responsables'"></app-wrapper-header>
+            <div *ngIf="RespuestaPaginacionAPI.contenidoPagina">
+            <app-table 
+            [Data]="RespuestaPaginacionAPI.contenidoPagina" 
+            [displayedColumns]="Columnas"
+            [totalPaginas]="RespuestaPaginacionAPI.totalPaginas"
+            [TotalRegistros]="RespuestaPaginacionAPI.totalRegistros"
+            (EmitirCambioPagina)="OnCambiodePagina($event)"
+            ></app-table>
+            </div>
         </div>
     </div>
 
-    <div class="row principal-wrapper col-5 ">
-        <div class="wrapper-header">
-            <h2>Crear Responsable</h2>
-        </div>
-        <form (ngSubmit)="onSubmit()" [formGroup]="" class="row  g-0 justify-content-between ">
-            <mat-form-field appearance="standard" class="col-12">
+    <div class="row principal-wrapper col-5 pw-mh-250">
+        <app-wrapper-header [texto]="'Crear Responsable'"></app-wrapper-header>
+        <form (ngSubmit)="OnCrear()" [formGroup]="ResponsableForm" class="row  g-0 justify-content-between ">
+            <mat-form-field appearance="standard" class="col-12" >
                 <mat-label>Nombre</mat-label>
-                <input matInput placeholder="Placeholder">
+                <input matInput placeholder="Nombre" formControlName="nombre">
               </mat-form-field> 
     
-              <mat-form-field appearance="standard" class="col-7">
+              <mat-form-field appearance="standard" class="col-7" >
                 <mat-label>Correo</mat-label>
-                <input matInput placeholder="Placeholder">
+                <input matInput placeholder="Correo" formControlName="correo">
               </mat-form-field> 
     
               <mat-form-field appearance="standard" class="col-4">
                 <mat-label>Telefono</mat-label>
-                <input matInput placeholder="Placeholder">
+                <input matInput placeholder="Placeholder"  formControlName="telefono">
               </mat-form-field> 
               <button class="menu-danger-button menu-button">
                   Guardar

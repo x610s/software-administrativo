@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TableComponent } from './table/table.component';
+import { PaginatorComponent } from './paginator/paginator.component';
+import { WrapperHeaderComponent } from './wrapper-header/wrapper-header.component';
+import { SnackbarComponent } from './snackbar/snackbar.component';
 
 @NgModule({
   imports: [
@@ -11,10 +14,17 @@ import { TableComponent } from './table/table.component';
     MaterialModule
   ],
   declarations: [
-    TableComponent
+    TableComponent,
+    PaginatorComponent,
+    WrapperHeaderComponent,
+    SnackbarComponent
+
   ],
   exports: [
-    TableComponent
+    TableComponent,
+    WrapperHeaderComponent,
+    PaginatorComponent,
+    SnackbarComponent
   ]
 })
 export class ComponentsModule { }

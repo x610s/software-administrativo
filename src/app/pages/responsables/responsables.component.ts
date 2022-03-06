@@ -1,9 +1,12 @@
+import { MaterialService } from './../../services/material.service';
+import { SnackbarComponent } from './../../components/snackbar/snackbar.component';
 import { Paginacion } from './../../models/generales.model';
 import { Responsable } from './../../models/responsable.model';
 import { ResponsableService } from './../../services/responsable.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BuscarPagina } from 'src/app/models/generales.model';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-responsables',
@@ -11,6 +14,7 @@ import { BuscarPagina } from 'src/app/models/generales.model';
   styleUrls: ['./responsables.component.scss']
 })
 export class ResponsablesComponent implements OnInit {
+
 
   ListadoResponsables:Responsable[] = [];
   RespuestaPaginacionAPI:Paginacion = new Paginacion();
@@ -21,16 +25,15 @@ export class ResponsablesComponent implements OnInit {
     telefono: new FormControl('')
   });
 
-  constructor(public responsableService:ResponsableService) { }
+  constructor(public responsableService:ResponsableService,
+    private material:MaterialService) { }
 
   ngOnInit(): void {
     this.BuscarResponsables();
   }
 
 
-
   //Metodos Http
-
   BuscarResponsables(){
     console.log(this.RespuestaPaginacionAPI.pagina);
     this.responsableService.ListarResponsables
@@ -47,7 +50,21 @@ export class ResponsablesComponent implements OnInit {
 
 
   //Metodos de Formulario
-  onSubmit(){
+  OnCrear(){
+    if(this.ResponsableForm.valid){
+      this.responsableService.CrearResponsable(this.ResponsableForm.value).subscribe(
+        (resp:any)=>{
+          this.material.MostrarSnackbar();
+          this.ResponsableForm.reset();
+        },
+        (e)=>{
+          console.log(e)
+        }
+      )
+    }else{
+      console.log('no valido');
+      
+    }
   }
 
   OnCambiodePagina($event:number){

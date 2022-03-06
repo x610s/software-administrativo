@@ -25,7 +25,9 @@
     position: relative;
     margin-bottom: -20px;
     top: -30px;
-    padding: 1px 0 !important;
+    padding-left: 5px  !important;
+    padding-top: 1px  !important;
+
     height: 40px;
     h2{
         font-weight: 300 !important;
@@ -34,3 +36,17 @@
         font-weight: 300px !important;
     }
 }
+
+.pw-mh-250{
+    max-height: 250px !important;
+}
+.pw-mh-300{
+    max-height: 300px !important;
+}
+.pw-mh-450{
+    max-height: 450px !important;
+}
+.pw-minh-450{
+    min-height: 450px !important;
+}
+
