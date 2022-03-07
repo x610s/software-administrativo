@@ -1,20 +1,25 @@
 <div class="row d-flex justify-content-evenly page-wrapper ">
-    <div class="row col-5 ">
-        <div class=" principal-wrapper pw-mh-450 pw-minh-450">
+    <div class="row col-7 " >
+        <div class=" principal-wrapper pw-mh-450 pw-minh-450" >
             <app-wrapper-header [texto]="'Listado de Responsables'"></app-wrapper-header>
-            <div *ngIf="RespuestaPaginacionAPI.contenidoPagina">
-            <app-table 
-            [Data]="RespuestaPaginacionAPI.contenidoPagina" 
-            [displayedColumns]="Columnas"
-            [totalPaginas]="RespuestaPaginacionAPI.totalPaginas"
-            [TotalRegistros]="RespuestaPaginacionAPI.totalRegistros"
-            (EmitirCambioPagina)="OnCambiodePagina($event)"
-            ></app-table>
+            <div *ngIf="Spinner == false">
+                <div *ngIf="RespuestaPaginacionAPI.contenidoPagina">
+                    <app-table 
+                    [Data]="RespuestaPaginacionAPI.contenidoPagina" 
+                    [displayedColumns]="Columnas"
+                    [totalPaginas]="TotalPaginas"
+                    [TotalRegistros]="TotalRegistros"
+                    (EmitirCambioPagina)="OnCambiodePagina($event)"
+                    ></app-table>
+             </div>
+            </div>
+            <div *ngIf="Spinner==true">
+                <mat-spinner></mat-spinner>
             </div>
         </div>
     </div>
 
-    <div class="row principal-wrapper col-5 pw-mh-250">
+    <div class="row principal-wrapper col-4 pw-mh-250">
         <app-wrapper-header [texto]="'Crear Responsable'"></app-wrapper-header>
         <form (ngSubmit)="OnCrear()" [formGroup]="ResponsableForm" class="row  g-0 justify-content-between ">
             <mat-form-field appearance="standard" class="col-12" >

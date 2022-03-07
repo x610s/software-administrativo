@@ -20,10 +20,10 @@ export class TableComponent implements OnInit {
   }
 
   ngOnInit(): void {
- 
   }
 
   ngAfterViewInit() {
+    console.log("Me Llaman view")
     if(this.Data){
       this.dataSource = new MatTableDataSource(this.Data)
       this.dataSource.paginator = this.paginator;
@@ -31,6 +31,7 @@ export class TableComponent implements OnInit {
         this.paginator.length = this.TotalRegistros// el total de registros
         this.paginator.pageSize = 6 //Cantidad Registro por pagina
       })
+
     }
   }
 

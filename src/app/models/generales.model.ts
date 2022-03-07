@@ -19,7 +19,7 @@ export class Paginacion {
 export class BuscarPagina {
     pagina:number;
     cantidadRegistrosPorPagina:number;
-    constructor(pagina:number,reigistros?:number) {   
+    constructor(pagina?:number,reigistros?:number) {   
         this.pagina = pagina;
         this.cantidadRegistrosPorPagina =reigistros;
     }
