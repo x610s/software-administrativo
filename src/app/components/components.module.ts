@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './../angular-material/material/material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -14,7 +15,9 @@ import { TableOptionMenuComponent } from './table/table-option-menu/table-option
   imports: [
     CommonModule,
     RouterModule,
-    MaterialModule
+    FormsModule,
+    MaterialModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     TableComponent,
@@ -23,7 +26,7 @@ import { TableOptionMenuComponent } from './table/table-option-menu/table-option
     SnackbarComponent,
     ProyectosDialogComponent,
     ResponsablesDialogComponent,
-    TableOptionMenuComponent
+    TableOptionMenuComponent,
 
   ],
   exports: [

@@ -1,9 +1,11 @@
+import { MultiFilterSearch } from './../../models/interfaces/MultiFilter-Search';
 import { MaterialService } from './../../services/material.service';
 import { Paginacion } from './../../models/generales.model';
 import { ResponsableService } from './../../services/responsable.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BuscarPagina } from 'src/app/models/generales.model';
+import { MultiSelect } from 'src/app/models/interfaces/Multi-Select';
 
 @Component({
   selector: 'app-responsables',
@@ -34,6 +36,7 @@ export class ResponsablesComponent implements OnInit {
       type:"string"
     }
   }];
+  CamposMultiFiltro:MultiSelect[] = [];
   Spinner: boolean = false;
   pagina = 1;
   TotalRegistros = 0;
@@ -49,32 +52,35 @@ export class ResponsablesComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.CamposParaFiltar()
     this.Spinner= true;
    setTimeout(() => {
     this.BuscarResponsables();
     this.Spinner= false;
    }, 1);
+
+   if(this.Columnas.length>0){
+     this.CamposMultiFiltro = this.CamposParaFiltar();
+   }
   }
 
 
-  //Metodos Http
+   //Metodos Http
   async BuscarResponsables(){
-   this.BuscarPagina.cantidadRegistrosPorPagina = 6;
-      this.responsableService.ListarResponsables(this.BuscarPagina).subscribe(
-          async(resp:Paginacion)=>{
-          await this.asigar(resp.totalPaginas,resp.totalRegistros,resp.pagina);
-          this.RespuestaPaginacionAPI = resp;
-          this.TotalRegistros = resp.totalRegistros;
-          this.TotalPaginas = resp.totalPaginas;
-        },
-       async (e)=>{
-          console.log(e)
-        }
-      )
-    }
- 
+    this.BuscarPagina.cantidadRegistrosPorPagina = 6;
+       this.responsableService.ListarResponsables(this.BuscarPagina).subscribe(
+           async(resp:Paginacion)=>{
+           await this.asigar(resp.totalPaginas,resp.totalRegistros,resp.pagina);
+           this.RespuestaPaginacionAPI = resp;
+           this.TotalRegistros = resp.totalRegistros;
+           this.TotalPaginas = resp.totalPaginas;
+         },
+        async (e)=>{
+           console.log(e)
+         }
+       )
+     }
 
-  //Metodos de Formulario
    OnCrear():void{
     if(this.ResponsableForm.valid){
       this.Spinner = true;
@@ -95,7 +101,33 @@ export class ResponsablesComponent implements OnInit {
     }else{
       console.log('no valido');
     }   
+  }
 
+  onBuscar($event:MultiFilterSearch){
+    if($event !=null || $event != undefined){
+        this.responsableService.BuscarResponsables($event).subscribe(
+          (resp:any)=>{
+            console.log(resp)
+          },
+          (e) =>{
+            console.log(e);
+          }
+        )
+
+
+    }
+  }
+
+
+  //Eventos u Estilos
+  CamposParaFiltar():MultiSelect[]{
+     return this.Columnas.map((obj)=>{
+     let MultiSelect: MultiSelect = {
+          nombre:obj['header'],
+          nombreTabla: obj['row']['name']
+      }
+      return MultiSelect;
+    });
   }
 
   OnCambiodePagina($event:number){

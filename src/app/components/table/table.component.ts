@@ -34,7 +34,6 @@ export class TableComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    console.log("Me Pinto")
     if(this.Data){
       this.dataSource = new MatTableDataSource(this.Data)
       this.dataSource.paginator = this.paginator;

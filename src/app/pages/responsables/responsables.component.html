@@ -1,7 +1,14 @@
 <div class="row d-flex justify-content-evenly page-wrapper ">
     <div class="row col-7 " >
         <div class=" principal-wrapper pw-mh-450 pw-minh-450" >
-            <app-wrapper-header [texto]="'Listado de Responsables'"></app-wrapper-header>
+            <!-- Header N Search -->
+            <app-wrapper-header 
+            [texto]="'Listado de Responsables'"
+            [CamposParaFiltrar]="CamposMultiFiltro"
+            (EmitirBusqueda)="onBuscar($event)">
+           </app-wrapper-header>
+
+           <!-- Tabla -->
             <div *ngIf="Spinner == false">
                 <div *ngIf="RespuestaPaginacionAPI.contenidoPagina">
                     <app-table 

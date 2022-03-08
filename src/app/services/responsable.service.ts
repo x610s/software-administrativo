@@ -1,3 +1,4 @@
+import { MultiFilterSearch } from './../models/interfaces/MultiFilter-Search';
 import { Responsable } from './../models/responsable.model';
 import { FormGroup } from '@angular/forms';
 import { BuscarPagina, Paginacion } from './../models/generales.model';
@@ -21,6 +22,10 @@ constructor(private http:HttpClient) { }
   //Crear
   CrearResponsable = (form: FormGroup):Observable<Paginacion>=>
   this.http.post<Paginacion>(`${environment.api_url}/Responsable/Add`,form);
+
+  //Buscar
+  BuscarResponsables = (multiFiltro: MultiFilterSearch):Observable<any>=>
+  this.http.post<any>(`${environment.api_url}/Responsable/Search`,multiFiltro);
  
 
 }

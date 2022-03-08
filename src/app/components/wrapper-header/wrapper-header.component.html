@@ -1,4 +1,32 @@
-<div class="wrapper-header">
+<div class="wrapper-header d-flex justify-content-between">
+   <div class="col-6 ">
     <h2>{{texto}}</h2>
+   </div>
+   <div class="col text-end text-white row">
+      <div class=" col-6 text-end d-flex justify-content-end" *ngIf="!SearchMode">
+        <button mat-icon-button aria-label="" (click)="this.SearchMode = !SearchMode" >
+            <mat-icon>search</mat-icon>
+          </button>
+      </div>
+      <div class=" col-6 text-end d-flex justify-content-end" *ngIf="SearchMode">
+        <button mat-icon-button aria-label="" (click)="onBuscar()" >
+            <mat-icon>settings_power</mat-icon>
+          </button>
+      </div>
+      <div class="col-6 " *ngIf="this.SearchMode" >
+        <ng-container *ngIf="CamposParaFiltrar.length==0; else elseTemplate">
+         <input type="text" name="" id="" class="search-input " [(ngModel)]="TerminoBusqueda">
+        </ng-container>
+        <ng-template #elseTemplate>
+         <input type="text" name="" id="" class="search-input " [(ngModel)]="TerminoBusqueda">
+         <mat-form-field appearance="fill">
+          <mat-label>Buscar En</mat-label>
+          <mat-select [formControl]="CamposFormControl" multiple>
+            <mat-option *ngFor="let campo of CamposParaFiltrar" [value]="campo.nombreTabla" > {{campo.nombre}} </mat-option>
+          </mat-select>
+        </mat-form-field>
+        </ng-template>
+      </div>
+   </div>
 </div>
 
