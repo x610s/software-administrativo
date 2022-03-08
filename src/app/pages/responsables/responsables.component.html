@@ -5,6 +5,7 @@
             <div *ngIf="Spinner == false">
                 <div *ngIf="RespuestaPaginacionAPI.contenidoPagina">
                     <app-table 
+                    [TipoTablaOpciones]="'Responsable'"
                     [Data]="RespuestaPaginacionAPI.contenidoPagina" 
                     [displayedColumns]="Columnas"
                     [totalPaginas]="TotalPaginas"
@@ -21,7 +22,7 @@
 
     <div class="row principal-wrapper col-4 pw-mh-250">
         <app-wrapper-header [texto]="'Crear Responsable'"></app-wrapper-header>
-        <form (ngSubmit)="OnCrear()" [formGroup]="ResponsableForm" class="row  g-0 justify-content-between ">
+        <form (ngSubmit)="OnCrear()" [formGroup]="ResponsableForm" class="row g-0 justify-content-between">
             <mat-form-field appearance="standard" class="col-12" >
                 <mat-label>Nombre</mat-label>
                 <input matInput placeholder="Nombre" formControlName="nombre">

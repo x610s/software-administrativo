@@ -15,7 +15,25 @@ export class ResponsablesComponent implements OnInit {
 
   RespuestaPaginacionAPI:Paginacion = new Paginacion();
   BuscarPagina= new BuscarPagina();
-  Columnas: string[] = ["nombre","correo","telefono"];
+  Columnas: object[] = [{
+    header:"Nombre",
+    row:{
+      name:"nombre",
+      type:"string"
+    }
+  },{
+    header:"Correo",
+    row:{
+      name:"correo",
+      type:"string"
+    }
+  },{
+    header:"Nro. Telefonico",
+    row:{
+      name:"telefono",
+      type:"string"
+    }
+  }];
   Spinner: boolean = false;
   pagina = 1;
   TotalRegistros = 0;
@@ -87,9 +105,9 @@ export class ResponsablesComponent implements OnInit {
   }
 
   asigar(tp:number,tr:number,p:number){
-this.TotalPaginas = tp;
-this.TotalRegistros =tr;
-this.BuscarPagina.pagina = p;
+    this.TotalPaginas = tp;
+    this.TotalRegistros =tr;
+    this.BuscarPagina.pagina = p;
   }
 
   AnularSpinner(){

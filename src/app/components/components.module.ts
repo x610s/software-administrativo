@@ -6,6 +6,9 @@ import { TableComponent } from './table/table.component';
 import { PaginatorComponent } from './paginator/paginator.component';
 import { WrapperHeaderComponent } from './wrapper-header/wrapper-header.component';
 import { SnackbarComponent } from './snackbar/snackbar.component';
+import { ProyectosDialogComponent } from './modals/proyectos-dialog/proyectos-dialog.component';
+import { ResponsablesDialogComponent } from './modals/responsables-dialog/responsables-dialog.component';
+import { TableOptionMenuComponent } from './table/table-option-menu/table-option-menu.component';
 
 @NgModule({
   imports: [
@@ -17,14 +20,20 @@ import { SnackbarComponent } from './snackbar/snackbar.component';
     TableComponent,
     PaginatorComponent,
     WrapperHeaderComponent,
-    SnackbarComponent
+    SnackbarComponent,
+    ProyectosDialogComponent,
+    ResponsablesDialogComponent,
+    TableOptionMenuComponent
 
   ],
   exports: [
     TableComponent,
-    WrapperHeaderComponent,
     PaginatorComponent,
-    SnackbarComponent
+    WrapperHeaderComponent,
+    SnackbarComponent,
+    ProyectosDialogComponent,
+    ResponsablesDialogComponent,
+    TableOptionMenuComponent
   ]
 })
 export class ComponentsModule { }

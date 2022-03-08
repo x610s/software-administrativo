@@ -1,0 +1,28 @@
+<div [ngSwitch]="TipoMenu">
+    <div *ngSwitchCase="'Proyecto'">
+        <button mat-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="onDisparaCambioTabla()">Cambiar Estado Proyecto</button>
+            <button mat-menu-item>Eliminar Proyecto</button>
+            <button mat-menu-item>Ver Descripción</button>
+          </mat-menu>
+    </div>
+    <div *ngSwitchCase="'Responsable'">
+      <button mat-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Eliminar Responsable</button>
+          <button mat-menu-item>Ver Proyectos Responsable</button>
+        </mat-menu>
+  </div>
+    <div *ngSwitchDefault>
+      <button mat-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+      </mat-menu>
+    </div>
+</div>
