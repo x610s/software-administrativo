@@ -21,7 +21,6 @@ export class WrapperHeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.CamposParaFiltrar);
   }
 
   onMostrarInputBuscar(){

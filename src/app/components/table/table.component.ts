@@ -19,12 +19,14 @@ export class TableComponent implements OnInit {
   @Input() TipoTablaOpciones: string = "";
   @Input() totalPaginas:number;
   @Input() TotalRegistros:number;
+  @Input() PageIndex:number =0;
   @Output() EmitirCambioPagina = new EventEmitter<number>();
   @Output() RefrescarTable = new EventEmitter<true>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   dataSource = new MatTableDataSource<any>();
 
   constructor(public dialog: MatDialog) { 
+ 
   }
 
   ngOnInit(): void {
@@ -38,6 +40,7 @@ export class TableComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.Data)
       this.dataSource.paginator = this.paginator;
       Promise.resolve().then(()=>{
+        this.paginator.pageIndex = this.PageIndex-1;
         this.paginator.length = this.TotalRegistros// el total de registros
         this.paginator.pageSize = 6 //Cantidad Registro por pagina
       })

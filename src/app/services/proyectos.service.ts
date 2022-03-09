@@ -13,8 +13,8 @@ export class ProyectosService {
   constructor(private http:HttpClient) { }
 
    //Listar
-   ListarProyectos = (bp: BuscarPagina):Observable<Paginacion>=>
-   this.http.post<Paginacion>(`${environment.api_url}/Proyecto`,bp);
+   ListarProyectos = async (bp: BuscarPagina):Promise<any>=>
+   this.http.post<Paginacion>(`${environment.api_url}/Proyecto`,bp).toPromise();
  
    //Crear
    CrearProyecto = (form: FormGroup):Observable<Paginacion>=>

@@ -16,8 +16,9 @@ constructor(private http:HttpClient) { }
 
 
   //Listar
-  ListarResponsables = (bp: BuscarPagina):Observable<Paginacion>=>
-  this.http.post<Paginacion>(`${environment.api_url}/Responsable`,bp);
+   ListarResponsables = async(bp: BuscarPagina):Promise<any>=>{
+     return this.http.post<Paginacion>(`${environment.api_url}/Responsable`,bp).toPromise();
+    }
 
   //Crear
   CrearResponsable = (form: FormGroup):Observable<Paginacion>=>

@@ -15,6 +15,7 @@
                     [TipoTablaOpciones]="'Responsable'"
                     [Data]="RespuestaPaginacionAPI.contenidoPagina" 
                     [displayedColumns]="Columnas"
+                    [PageIndex]="BuscarPagina.pagina"
                     [totalPaginas]="TotalPaginas"
                     [TotalRegistros]="TotalRegistros"
                     (EmitirCambioPagina)="OnCambiodePagina($event)"
