@@ -16,7 +16,7 @@ export class ResponsablesComponent implements OnInit {
 
 
   RespuestaPaginacionAPI:Paginacion = new Paginacion();
-  BuscarPagina= new BuscarPagina();
+  BuscarPagina= new BuscarPagina(1,6);
   Columnas: object[] = [{
     header:"Nombre",
     row:{
@@ -41,9 +41,9 @@ export class ResponsablesComponent implements OnInit {
   TotalRegistros = 0;
   TotalPaginas = 0;
   ResponsableForm = new FormGroup({
-    nombre: new FormControl('Juan marco',Validators.required),
-    correo: new FormControl('juan@marco.com'),
-    telefono: new FormControl('042423-21312')
+    nombre: new FormControl('',Validators.required),
+    correo: new FormControl(''),
+    telefono: new FormControl('')
   });
 
   constructor(public responsableService:ResponsableService,
@@ -61,51 +61,55 @@ export class ResponsablesComponent implements OnInit {
 
    //Metodos Http
   BuscarDataAsincrona = async() => {
-    this.BuscarPagina.cantidadRegistrosPorPagina = 6;
-    const espera = await this.responsableService.ListarResponsables(this.BuscarPagina).then(
+    const espera = await this.responsableService.BuscarResponsables(this.BuscarPagina).then(
         (resp:Paginacion)=>{
-         this.asigar(resp.totalPaginas,resp.totalRegistros,resp.pagina);
-          this.RespuestaPaginacionAPI = resp;
+          this.asignar(resp.totalPaginas,resp.totalRegistros,resp.pagina);
+         this.RespuestaPaginacionAPI = resp;
       }
     ).catch((e)=>{
       console.log(e);
     })
   }
 
-   OnCrear():void{
-   /*  if(this.ResponsableForm.valid){
+  
+  onBuscar =($event:MultiFilterSearch) =>{
+    if($event !=null || $event != undefined){
+      this.Spinner = true;
+      this.BuscarPagina.filtro = $event;
+      this.BuscarPagina.pagina = 1;
+      this.responsableService.BuscarResponsables(this.BuscarPagina).then(
+         async (resp:Paginacion)=>{
+           console.log(resp);
+           const esperarA = await this.asignar(resp.totalPaginas,resp.totalRegistros,resp.pagina,resp);
+           this.Spinner = false;  
+          },
+          (e) =>{
+             this.Spinner = false; 
+          }
+        )   
+    } 
+  }
+
+   OnCrear(){
+    if(this.ResponsableForm.valid){
       this.Spinner = true;
       this.responsableService.CrearResponsable(this.ResponsableForm.value).subscribe(
          async (resp:Paginacion)=>{
           this.material.MostrarSnackbar();
-          await this.AgregarRegistroPaginacion();
           this.ResponsableForm.reset();
-            this.BuscarResponsables();
-          await this.AnularSpinner();
+          const esperar = await this.BuscarDataAsincrona(); 
+         this.Spinner=false;
         },
         async (e)=>{
           this.Spinner = false
           console.log(e)
-          await this.AnularSpinner();
         }
       ) 
     }else{
       console.log('no valido');
-    }    */
+    }    
   }
 
-  onBuscar($event:MultiFilterSearch){
-    if($event !=null || $event != undefined){
-        this.responsableService.BuscarResponsables($event).subscribe(
-          (resp:any)=>{
-            console.log(resp)
-          },
-          (e) =>{
-            console.log(e);
-          }
-        )
-    }
-  }
 
   //Eventos u Estilos
   CamposParaFiltar():MultiSelect[]{
@@ -125,19 +129,26 @@ export class ResponsablesComponent implements OnInit {
     this.Spinner = false;
   }
 
-  asigar(tp:number,tr:number,p:number){
+  asignar(tp:number,tr:number,p:number,resp?:object|any){
     this.TotalPaginas = tp;
     this.TotalRegistros =tr;
     this.BuscarPagina.pagina = p;
+    if(resp!=null || resp !=undefined){
+      this.RespuestaPaginacionAPI = resp
+    }
   }
 
   cambiarPagina(page:number){
     this.BuscarPagina.pagina = page;
   }
 
-  AgregarRegistroPaginacion(){
-    this.TotalRegistros += 1;
-    this.BuscarPagina.pagina =1;
-    this.TotalPaginas = Math.ceil(this.TotalRegistros/this.BuscarPagina.cantidadRegistrosPorPagina);
+  LimpiarBusqueda = async($event: boolean = true)=>{
+    this.BuscarPagina.filtro = {
+      campos:[],
+      termino:""
+    }
+    this.Spinner = true;
+    let a = await this.BuscarDataAsincrona();
+    this.Spinner = false;
   }
 }

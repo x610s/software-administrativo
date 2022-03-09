@@ -26,7 +26,6 @@ export class TableComponent implements OnInit {
   dataSource = new MatTableDataSource<any>();
 
   constructor(public dialog: MatDialog) { 
- 
   }
 
   ngOnInit(): void {

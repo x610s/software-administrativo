@@ -16,17 +16,22 @@ constructor(private http:HttpClient) { }
 
 
   //Listar
-   ListarResponsables = async(bp: BuscarPagina):Promise<any>=>{
+/*    ListarResponsables = async(bp: BuscarPagina):Promise<any>=>{
      return this.http.post<Paginacion>(`${environment.api_url}/Responsable`,bp).toPromise();
-    }
+    } */
 
   //Crear
   CrearResponsable = (form: FormGroup):Observable<Paginacion>=>
   this.http.post<Paginacion>(`${environment.api_url}/Responsable/Add`,form);
 
   //Buscar
-  BuscarResponsables = (multiFiltro: MultiFilterSearch):Observable<any>=>
-  this.http.post<any>(`${environment.api_url}/Responsable/Search`,multiFiltro);
+  BuscarResponsables = (buscarPagina:BuscarPagina):Promise<any>=>{
+     return this.http.post<Paginacion>(`${environment.api_url}/Responsable/Search`,buscarPagina).toPromise();
+  }
+
+  //:Promise<any>=>
+
+  //.toPromise();
  
 
 }

@@ -1,5 +1,6 @@
+import { MultiFilterSearch } from "./interfaces/MultiFilter-Search";
+
 export class Paginacion {
-    
     pagina:number = 1;
     cantidadRegistrosPorPagina:number = 6;
     totalRegistros:number;
@@ -17,8 +18,12 @@ export class Paginacion {
 }
 
 export class BuscarPagina {
-    pagina:number;
+    pagina:number = 1;
     cantidadRegistrosPorPagina:number;
+    filtro: MultiFilterSearch = {
+        campos: [],
+        termino: ""
+    }
     constructor(pagina?:number,reigistros?:number) {   
         this.pagina = pagina;
         this.cantidadRegistrosPorPagina =reigistros;

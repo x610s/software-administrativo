@@ -17,6 +17,8 @@ export class WrapperHeaderComponent implements OnInit {
   @Input() texto;
   @Input() CamposParaFiltrar:MultiSelect[] = [];
   @Output() EmitirBusqueda = new EventEmitter<MultiFilterSearch>();
+  @Output() LimpiarBusqueda = new EventEmitter<true>();
+
 
   constructor() { }
 
@@ -29,16 +31,22 @@ export class WrapperHeaderComponent implements OnInit {
   }
 
   onBuscar(){
-     if(this.TerminoBusqueda.trim() !== ''){
-       let multiFiltro :MultiFilterSearch ={
-         campos : this.CamposFormControl.value,
-         termino : this.TerminoBusqueda
-       }
+      if(this.TerminoBusqueda.trim() !== '' && !this.SinCamposSeleccionados()){
+       let multiFiltro : MultiFilterSearch ={
+          campos:this.CamposFormControl.value,
+          termino: this.TerminoBusqueda,
+       };
         this.EmitirBusqueda.emit(multiFiltro)
+     }else{
+       this.CamposFormControl.reset();
+       this.LimpiarBusqueda.emit(true);
      } 
-/*     console.log(this.TerminoBusqueda);
-    console.log(this.CamposFormControl.value); */
   }
 
+  SinCamposSeleccionados(){
+    return (Array.isArray(this.CamposFormControl.value) == true
+     && this.CamposFormControl.value.length==0)
+    || this.CamposFormControl.value ==null;
+  }
   
 }
