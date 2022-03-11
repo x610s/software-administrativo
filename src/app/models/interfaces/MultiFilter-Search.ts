@@ -1,3 +1,4 @@
+import { DateFilter } from './DateFilter';
 export interface MultiFilterSearch {
     termino: string;
     campos: string[];

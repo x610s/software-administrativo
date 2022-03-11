@@ -1,17 +1,22 @@
 <div class="wrapper-header d-flex justify-content-between">
-   <div class="col-6 ">
+   <div class="col- ">
     <h2>{{texto}}</h2>
    </div>
    <div class="col text-end text-white row">
-      <div class=" col-6 text-end d-flex justify-content-end" *ngIf="!SearchMode">
-        <button mat-icon-button aria-label="" (click)="this.SearchMode = !SearchMode" >
+      <div class=" col text-end d-flex justify-content-end" >
+        <div *ngIf="DateFilter">
+          <app-date-filter
+          (EnviarFiltroFecha)="onFiltroFecha($event)"
+          [CamposAFiltrar]="CamposParaFiltrarFecha"></app-date-filter>
+        </div>
+        <button mat-icon-button aria-label="" (click)="this.SearchMode = !SearchMode" *ngIf="!SearchMode">
             <mat-icon>search</mat-icon>
           </button>
-      </div>
-      <div class=" col-6 text-end d-flex justify-content-end" *ngIf="SearchMode">
-        <button mat-icon-button aria-label="" (click)="onBuscar()" >
-            <mat-icon>settings_power</mat-icon>
-          </button>
+          <div class=" col-6 text-end d-flex justify-content-end" *ngIf="SearchMode">
+            <button mat-icon-button aria-label="" (click)="onBuscar()" >
+                <mat-icon>settings_power</mat-icon>
+              </button>
+          </div>
       </div>
       <div class="col-6 " *ngIf="this.SearchMode" >
         <ng-container *ngIf="CamposParaFiltrar.length==0; else elseTemplate">
@@ -22,7 +27,8 @@
          <mat-form-field appearance="fill">
           <mat-label>Buscar En</mat-label>
           <mat-select [formControl]="CamposFormControl" multiple>
-            <mat-option *ngFor="let campo of CamposParaFiltrar" [value]="campo.nombreTabla" > {{campo.nombre}} </mat-option>
+            <mat-option *ngFor="let campo of CamposParaFiltrar" 
+            [value]="campo.queryString ? campo.queryString: campo.nombre" > {{campo.nombre}} </mat-option>
           </mat-select>
         </mat-form-field>
         </ng-template>

@@ -1,13 +1,25 @@
  <div class="row d-flex justify-content-evenly page-wrapper ">
     <div class="row col-12 " >
         <div class=" principal-wrapper pw-mh-450 pw-minh-450" >
-            <app-wrapper-header [texto]="'Listado de Responsables'"></app-wrapper-header>
+           <!-- Header N Search -->
+            <app-wrapper-header 
+            [texto]="'Listado de Responsables'"
+            [CamposParaFiltrar]="CamposMultiFiltro"
+            [CamposParaFiltrarFecha]="CamposFechaFiltro"
+            [DateFilter]="true"
+            (EmitirBusqueda)="onBuscar($event)"
+            (LimpiarBusqueda)="LimpiarBusqueda($event)"
+            (EmitirFiltroFecha)="onFiltroFecha($event)"
+            ></app-wrapper-header>
+            
+                  <!-- Tabla -->
             <div *ngIf="Spinner == false">
                 <div *ngIf="RespuestaPaginacionAPI.contenidoPagina">
                     <app-table 
                     [TipoTablaOpciones]="'Proyecto'"
                     [Data]="RespuestaPaginacionAPI.contenidoPagina" 
                     [displayedColumns]="Columnas"
+                    [PageIndex]="BuscarPagina.pagina"
                     [totalPaginas]="TotalPaginas"
                     [TotalRegistros]="TotalRegistros"
                     (EmitirCambioPagina)="OnCambiodePagina($event)"

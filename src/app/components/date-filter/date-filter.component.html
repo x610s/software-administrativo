@@ -1,0 +1,27 @@
+<div *ngIf="CamposAFiltrar.length>0 && this.FiltroFechasForm.length>0 ">
+  <button mat-button [matMenuTriggerFor]="menu">
+    <mat-icon>calendar_today</mat-icon>
+  </button>
+<mat-menu #menu="matMenu" >
+        <div *ngFor="let item of FiltroFechasForm; let i=index">
+          <mat-form-field appearance="fill">
+            <mat-label>{{CamposAFiltrar[i].nombre}}</mat-label>
+            <mat-date-range-input [formGroup]="item" [rangePicker]="picker">
+              <input matStartDate formControlName="start" placeholder="Start date" 
+              (click)="$event.stopPropagation();">
+              <input matEndDate formControlName="end" placeholder="End date"
+              (click)="$event.stopPropagation();">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          </mat-form-field>
+          <small *ngIf="item.errors?.['FaltaData']" class="text-danger">
+       No es un rango valido
+          </small>
+          
+        </div>
+        <button mat-button (click)="EjecutarFiltro($event)">
+          <mat-icon>send</mat-icon>
+        </button>
+</mat-menu>
+</div> 

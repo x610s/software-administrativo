@@ -13,6 +13,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   imports: [
     CommonModule,
@@ -28,7 +30,9 @@ import {MatSelectModule} from '@angular/material/select';
     MatProgressSpinnerModule,
     MatButtonModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   declarations: [],
   exports:[
@@ -44,7 +48,10 @@ import {MatSelectModule} from '@angular/material/select';
     MatSidenavModule,
     MatProgressSpinnerModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+
   ]
 })
 export class MaterialModule { }

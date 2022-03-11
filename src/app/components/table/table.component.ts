@@ -35,11 +35,11 @@ export class TableComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    if(this.Data){
+    if(this.Data && this.Data.length>0){
       this.dataSource = new MatTableDataSource(this.Data)
       this.dataSource.paginator = this.paginator;
       Promise.resolve().then(()=>{
-        this.paginator.pageIndex = this.PageIndex-1;
+        this.paginator.pageIndex = this.PageIndex-1? this.PageIndex-1:0;
         this.paginator.length = this.TotalRegistros// el total de registros
         this.paginator.pageSize = 6 //Cantidad Registro por pagina
       })

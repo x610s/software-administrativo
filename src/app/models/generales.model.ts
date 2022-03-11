@@ -1,3 +1,4 @@
+import { DateFilter } from './interfaces/DateFilter';
 import { MultiFilterSearch } from "./interfaces/MultiFilter-Search";
 
 export class Paginacion {
@@ -20,10 +21,12 @@ export class Paginacion {
 export class BuscarPagina {
     pagina:number = 1;
     cantidadRegistrosPorPagina:number;
-    filtro: MultiFilterSearch = {
+    filtroTexto: MultiFilterSearch = {
         campos: [],
         termino: ""
     }
+    filtroFechas?: DateFilter[];
+
     constructor(pagina?:number,reigistros?:number) {   
         this.pagina = pagina;
         this.cantidadRegistrosPorPagina =reigistros;

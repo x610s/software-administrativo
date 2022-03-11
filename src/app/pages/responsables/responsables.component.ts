@@ -36,8 +36,8 @@ export class ResponsablesComponent implements OnInit {
       type:"string"
     }
   }];
-  CamposMultiFiltro:MultiSelect[] = [];
   Spinner: boolean = false;
+  CamposMultiFiltro:MultiSelect[] = [];
   TotalRegistros = 0;
   TotalPaginas = 0;
   ResponsableForm = new FormGroup({
@@ -75,7 +75,7 @@ export class ResponsablesComponent implements OnInit {
   onBuscar =($event:MultiFilterSearch) =>{
     if($event !=null || $event != undefined){
       this.Spinner = true;
-      this.BuscarPagina.filtro = $event;
+      this.BuscarPagina.filtroTexto = $event;
       this.BuscarPagina.pagina = 1;
       this.responsableService.BuscarResponsables(this.BuscarPagina).then(
          async (resp:Paginacion)=>{
@@ -110,7 +110,7 @@ export class ResponsablesComponent implements OnInit {
     }    
   }
 
-
+  
   //Eventos u Estilos
   CamposParaFiltar():MultiSelect[]{
      return this.Columnas.map((obj)=>{
@@ -143,7 +143,7 @@ export class ResponsablesComponent implements OnInit {
   }
 
   LimpiarBusqueda = async($event: boolean = true)=>{
-    this.BuscarPagina.filtro = {
+    this.BuscarPagina.filtroTexto = {
       campos:[],
       termino:""
     }

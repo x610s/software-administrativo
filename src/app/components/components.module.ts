@@ -10,6 +10,7 @@ import { SnackbarComponent } from './snackbar/snackbar.component';
 import { ProyectosDialogComponent } from './modals/proyectos-dialog/proyectos-dialog.component';
 import { ResponsablesDialogComponent } from './modals/responsables-dialog/responsables-dialog.component';
 import { TableOptionMenuComponent } from './table/table-option-menu/table-option-menu.component';
+import { DateFilterComponent } from './date-filter/date-filter.component';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { TableOptionMenuComponent } from './table/table-option-menu/table-option
     ProyectosDialogComponent,
     ResponsablesDialogComponent,
     TableOptionMenuComponent,
+    DateFilterComponent,
 
   ],
   exports: [

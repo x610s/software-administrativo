@@ -5,6 +5,7 @@
             <app-wrapper-header 
             [texto]="'Listado de Responsables'"
             [CamposParaFiltrar]="CamposMultiFiltro"
+            [DateFilter]="false"
             (EmitirBusqueda)="onBuscar($event)"
             (LimpiarBusqueda)="LimpiarBusqueda($event)">
            </app-wrapper-header>

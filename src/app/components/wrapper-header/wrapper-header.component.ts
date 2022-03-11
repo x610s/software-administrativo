@@ -1,6 +1,7 @@
+import { DateFilter } from './../../models/interfaces/DateFilter';
 import { MultiFilterSearch } from './../../models/interfaces/MultiFilter-Search';
 import { MultiSelect } from './../../models/interfaces/Multi-Select';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -14,10 +15,14 @@ export class WrapperHeaderComponent implements OnInit {
   TieneSearch:boolean = true;
   TerminoBusqueda: string = "";
   CamposFormControl = new FormControl();
+  @Input() DateFilter:boolean = true;
+  @Input() CamposParaFiltrarFecha: MultiSelect[] = [];
   @Input() texto;
   @Input() CamposParaFiltrar:MultiSelect[] = [];
   @Output() EmitirBusqueda = new EventEmitter<MultiFilterSearch>();
   @Output() LimpiarBusqueda = new EventEmitter<true>();
+  @Output() EmitirFiltroFecha = new EventEmitter<DateFilter[]>();
+
 
 
   constructor() { }
@@ -47,6 +52,10 @@ export class WrapperHeaderComponent implements OnInit {
     return (Array.isArray(this.CamposFormControl.value) == true
      && this.CamposFormControl.value.length==0)
     || this.CamposFormControl.value ==null;
+  }
+
+  onFiltroFecha($event:DateFilter[]){
+    this.EmitirFiltroFecha.emit($event);
   }
   
 }

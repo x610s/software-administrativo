@@ -1,4 +1,4 @@
- <div *ngIf="Data.length>0">
+<ng-container *ngIf="Data.length>0; else elseTemplate">
   <table mat-table [dataSource]="Data" class="mat-elevation-z0 col-12">
     <div *ngFor="let column of rowName; let i=index">
     <ng-container [matColumnDef]="column">
@@ -36,5 +36,10 @@
   (page)="OnCambioPagina($event)"
   [length]="totalPaginas"
   aria-label="Select page of users"></mat-paginator>
-</div> 
+</ng-container>
+<ng-template #elseTemplate>
+  <div class="text-center text-white">No Data</div>
+</ng-template>
+
+
 
