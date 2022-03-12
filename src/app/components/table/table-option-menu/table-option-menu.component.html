@@ -4,9 +4,12 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="onDisparaCambioTabla()">Cambiar Estado Proyecto</button>
-            <button mat-menu-item>Eliminar Proyecto</button>
-            <button mat-menu-item>Ver Descripción</button>
+            <app-proyectos-table-option
+            (RegistroModificado)="OnRegistroModificado($event)"
+            (RegistroEliminado)="OnRegistroEliminado($event)"
+            [ProyectoId]="ProyectoId"
+            [Status]="Status">
+          </app-proyectos-table-option>
           </mat-menu>
     </div>
     <div *ngSwitchCase="'Responsable'">

@@ -11,6 +11,7 @@ import { ProyectosDialogComponent } from './modals/proyectos-dialog/proyectos-di
 import { ResponsablesDialogComponent } from './modals/responsables-dialog/responsables-dialog.component';
 import { TableOptionMenuComponent } from './table/table-option-menu/table-option-menu.component';
 import { DateFilterComponent } from './date-filter/date-filter.component';
+import { ProyectosTableOptionComponent } from './table/table-option-menu/proyectos-table-option/proyectos-table-option.component';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { DateFilterComponent } from './date-filter/date-filter.component';
     ResponsablesDialogComponent,
     TableOptionMenuComponent,
     DateFilterComponent,
+    ProyectosTableOptionComponent,
 
   ],
   exports: [

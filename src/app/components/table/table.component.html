@@ -14,15 +14,19 @@
         <!-- Es Boolean --> 
         <div *ngIf="rowType[i]=='bool'">
           <td mat-cell *matCellDef="let element" > 
-            <span [ngClass]="{'dot-green': element[column],'dot-gray': !element[column]}"></span>
+          <span [ngClass]="{'dot-green': element[column],'dot-gray': !element[column]}"></span>
            </td>
         </div>
           <!-- Opcion --> 
           <div *ngIf="rowType[i]=='option'">
             <td mat-cell *matCellDef="let element" > 
               <app-table-option-menu
-              (DispararCambioEvent)="OnRecibirCambioTable($event)"
+              [ProyectoId] = "element.id"
+              [Status] = "element.status"
               [TipoMenu]="TipoTablaOpciones"
+              (DispararCambioEvent)="OnRecibirCambioTable($event)"
+              (RegistroModificado)="OnRegistroModificado($event)"
+              (RegistroEliminado)="OnRegistroEliminado($event)"
               ></app-table-option-menu>
              </td>
           </div>
